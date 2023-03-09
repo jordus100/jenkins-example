@@ -48,7 +48,7 @@ pipeline {
             }
             post {
                 always {
-                    junit '**/debugAndroidTest/**'
+                    junit '**/build/outputs/**/debugAndroidTest/**'
                 }
             }
 
