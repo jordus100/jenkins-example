@@ -40,7 +40,7 @@ pipeline {
                 echo 'test app'
                 unstash 'app'
                 sh 'pwd'
-                sh 'stf-client -t 6f837a14355149739df5ee83879799223e06ae8267f14749820b283c52c3e799 -u https://sebastian.smartdust.me connect --all'
+                sh 'stf-client -t 8a51b13fe1ee46bf97ca6bd659319644684bf4ce2a5d4d21958c648f0b72b23f -u https://sebastian.smartdust.me connect --all'
                 sh 'sleep 5'
                 sh 'adb devices'
                 sh './gradlew connectedAndroidTest --no-daemon'
