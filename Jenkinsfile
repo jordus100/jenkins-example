@@ -10,7 +10,7 @@ pipeline {
 
         stage('Checkout scm') {
             agent {
-                label 'build app node'
+                label 'THIS'
             }
             steps {
                 checkout scm
@@ -19,7 +19,7 @@ pipeline {
 
         stage('Build') {
             agent {
-                label 'build app node'
+                label 'THIS'
             }
             steps {
                 echo 'build app'
@@ -31,20 +31,15 @@ pipeline {
         stage('OnFarmTest') {
 
             agent {
-                label 'build test node'
+                label 'THIS'
             }
-            environment {
-                PATH = "/home/ubuntu/DevTools/stf-console-client-0.3.4/bin:$PATH"
-            }
+	    environment {
+		BUNDLE_GEMFILE = '/home/jordan/workspace/stf-client/Gemfile'
             steps {
-                echo "PATH is: $PATH"
                 echo 'test app'
                 unstash 'app'
                 sh 'pwd'
-                sh 'stf'
-                sh 'stf devices --all'
-                sh 'sleep 5'
-                sh 'stf connect --all &'
+                sh 'bundle exec stf-client -t 6f837a14355149739df5ee83879799223e06ae8267f14749820b283c52c3e799 -u https://sebastian.smartdust.me connect --all'
                 sh 'sleep 5'
                 sh 'adb devices'
                 sh './gradlew connectedAndroidTest --no-daemon'
