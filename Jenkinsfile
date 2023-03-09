@@ -34,7 +34,7 @@ pipeline {
                 label 'THIS'
             }
 	    environment {
-		BUNDLE_GEMFILE = '/home/jordan/workspace/stf-client/Gemfile'
+		BUNDLE_GEMFILE = '/home/jordan/workspace/stf-client'
 	    }
             steps {
                 echo 'test app'
