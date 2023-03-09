@@ -35,6 +35,7 @@ pipeline {
             }
 	    environment {
 		BUNDLE_GEMFILE = '/home/jordan/workspace/stf-client/Gemfile'
+	    }
             steps {
                 echo 'test app'
                 unstash 'app'
