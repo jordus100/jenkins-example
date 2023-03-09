@@ -43,7 +43,7 @@ pipeline {
                 sh 'stf-client -t 8a51b13fe1ee46bf97ca6bd659319644684bf4ce2a5d4d21958c648f0b72b23f -u https://sebastian.smartdust.me connect --all'
                 sh 'sleep 5'
                 sh 'adb devices'
-                sh './gradlew connectedAndroidTest --no-daemon'
+                sh './gradlew connectedAndroidTest'
 
             }
             post {
