@@ -25,7 +25,7 @@ pipeline {
             }
             steps {
                 echo 'build app'
-                sh 'sudo jenv global 1.8'
+                sh 'jenv global 1.8'
                 sh './gradlew clean assembleDebug --no-daemon'
                 stash name: 'app', includes: '**', excludes: '**/.gradle/,**/.git/**'
             }
