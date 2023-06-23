@@ -35,8 +35,6 @@ pipeline {
             agent {
                 label 'inbuilt'
             }
-	    environment {
-	    }
             steps {
                 echo 'test app'
                 unstash 'app'
