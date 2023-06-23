@@ -25,7 +25,6 @@ pipeline {
                 }
             }
             steps {
-                echo 'build app'
                 sh 'jenv local 1.8'
                 sh './gradlew clean assembleDebug --no-daemon'
                 stash name: 'app', includes: '**', excludes: '**/.gradle/,**/.git/**'
@@ -33,19 +32,19 @@ pipeline {
         }
 
         stage('OnFarmTest') {
-
             agent {
                 label 'inbuilt'
             }
+            environment {
+                SD_URL = 'staging.smartdust.me'
+                SD_TOKEN = 'true'
+            }
             steps {
-                echo 'test app'
                 unstash 'app'
-                sh 'pwd'
-                sh 'stf-client -t 8a51b13fe1ee46bf97ca6bd659319644684bf4ce2a5d4d21958c648f0b72b23f -u https://sebastian.smartdust.me connect --all'
+                sh 'connect --min=2 -n 2 -f platform:Android'
                 sh 'sleep 5'
                 sh 'adb devices'
                 sh './gradlew connectedAndroidTest'
-
             }
             post {
                 always {
