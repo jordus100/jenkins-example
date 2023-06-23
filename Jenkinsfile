@@ -27,7 +27,6 @@ pipeline {
             steps {
                 sh 'jenv local 1.8'
                 sh './gradlew clean assembleDebug --no-daemon'
-                stash name: 'app', includes: '**', excludes: '**/.gradle/,**/.git/**'
             }
         }
 
@@ -40,7 +39,6 @@ pipeline {
                 SD_TOKEN = 'true'
             }
             steps {
-                unstash 'app'
                 sh 'connect --min=2 -n 2 -f platform:Android'
                 sh 'sleep 5'
                 sh 'adb devices'
