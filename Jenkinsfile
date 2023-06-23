@@ -2,15 +2,14 @@ pipeline {
 
     agent none
 
-    environment {
-        ANDROID_SDK_ROOT = '/usr/lib/android-sdk'
-    }
-
     stages {
 
         stage('Checkout scm') {
             agent {
-                label 'THIS'
+                docker {
+                    image 'mingc/android-build-box'
+                    reuseNode true
+                }
             }
             steps {
                 checkout scm
@@ -19,7 +18,10 @@ pipeline {
 
         stage('Build') {
             agent {
-                label 'THIS'
+                docker {
+                    image 'mingc/android-build-box'
+                    reuseNode true
+                }
             }
             steps {
                 echo 'build app'
@@ -31,10 +33,9 @@ pipeline {
         stage('OnFarmTest') {
 
             agent {
-                label 'THIS'
+                label 'inbuilt'
             }
 	    environment {
-		BUNDLE_GEMFILE = '/home/jordan/workspace/stf-client'
 	    }
             steps {
                 echo 'test app'
