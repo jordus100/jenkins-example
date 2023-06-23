@@ -20,6 +20,7 @@ pipeline {
             agent {
                 docker {
                     image 'mingc/android-build-box'
+                    args '--user root'
                     reuseNode true
                 }
             }
