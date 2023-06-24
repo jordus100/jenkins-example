@@ -36,10 +36,10 @@ pipeline {
             }
             environment {
                 SD_URL = 'staging.smartdust.me'
-                SD_TOKEN = 'true'
+                SD_TOKEN = 'a534c80c572442689dd560c4bc34921ce441781b34434f5bb02b062424a89fee'
             }
             steps {
-                sh './usr/local/bin/smartdust-client connect --min=2 -n 2 -f platform:Android'
+                sh 'smartdust-client connect --min=2 -n 2 -f platform:Android'
                 sh 'sleep 5'
                 sh 'adb devices'
                 sh './gradlew connectedAndroidTest'
