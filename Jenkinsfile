@@ -7,7 +7,7 @@ pipeline {
         stage('Checkout scm') {
             agent {
                 docker {
-                    image 'mingc/android-build-box'
+                    image 'mingc/android-build-box-smartdust'
                 }
             }
             steps {
@@ -18,7 +18,7 @@ pipeline {
         stage('Build') {
             agent {
                 docker {
-                    image 'mingc/android-build-box'
+                    image 'mingc/android-build-box-smartdust'
                     args '--user root'
                 }
             }
@@ -30,7 +30,10 @@ pipeline {
 
         stage('OnFarmTest') {
             agent {
-                label 'inbuilt'
+                docker {
+                    image 'mingc/android-build-box-smartdust'
+                    args '--user root'
+                }
             }
             environment {
                 SD_URL = 'https://staging.smartdust.me'
