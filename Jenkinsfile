@@ -39,7 +39,7 @@ pipeline {
                 SD_TOKEN = 'true'
             }
             steps {
-                sh 'smartdust-client connect --min=2 -n 2 -f platform:Android'
+                sh './usr/local/bin/smartdust-client connect --min=2 -n 2 -f platform:Android'
                 sh 'sleep 5'
                 sh 'adb devices'
                 sh './gradlew connectedAndroidTest'
