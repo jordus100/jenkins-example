@@ -41,7 +41,7 @@ pipeline {
                 ANDROID_SDK_ROOT = '/opt/android-sdk'
             }
             steps {
-                sh 'smartdust-client connect --min=2 -n 2 -f platform:Android'
+                sh 'smartdust-client connect --min=1 -n 1 -f platform:Android'
                 sh 'sleep 5'
                 sh 'adb devices'
                 sh './gradlew connectedAndroidTest'
