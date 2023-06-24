@@ -35,7 +35,7 @@ pipeline {
                 label 'inbuilt'
             }
             environment {
-                SD_URL = 'staging.smartdust.me'
+                SD_URL = 'https://staging.smartdust.me'
                 SD_TOKEN = 'a534c80c572442689dd560c4bc34921ce441781b34434f5bb02b062424a89fee'
             }
             steps {
