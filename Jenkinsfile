@@ -11,7 +11,7 @@ pipeline {
                 }
             }
             steps {
-                checkout scm
+                checkout scm // pull latest version of code
             }
         }
 
@@ -23,12 +23,12 @@ pipeline {
                 }
             }
             steps {
-                sh 'jenv local 1.8'
+                sh 'jenv local 1.8' // change version of Java to 1.8 due to project requirements
                 sh './gradlew clean assembleDebug --no-daemon'
             }
         }
 
-        stage('OnFarmTest') {
+        stage('SmartdustLabTest') {
             agent {
                 docker {
                     image 'mingc/android-build-box-smartdust'
